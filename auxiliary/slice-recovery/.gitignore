@@ -1,0 +1,4 @@
+*.a
+*.o
+get_slice_mapping
+example_hash_function_usage
