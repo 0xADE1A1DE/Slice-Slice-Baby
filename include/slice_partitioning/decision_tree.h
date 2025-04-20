@@ -1,3 +1,5 @@
+// This method is equivalent to the ID3 algorithm by J. R. Quinlan (https://en.wikipedia.org/wiki/ID3_algorithm).
+
 #ifndef __DECISION_TREE__
 #define __DECISION_TREE__
 
