@@ -12,6 +12,7 @@ We incorporate a slice-detection mechanism using microarchitectural weird gates 
 - [Dependencies](#dependencies)
 - [Install](#install)
 - [Running](#running)
+- [Adapting Configs for New Processors](#adapting-configs-for-new-processors)
 - [Running Specific Experiments](#running-specific-experiments)
 - [License](#license)
 - [Authors](#authors)
@@ -78,6 +79,13 @@ The script retrieves cache information for the CPU:
 - Although a little clunky, this was a conscious choice to make sure these values were hardcoded at compile time to simplify the management of certain aspects of the eviction set code.
 
 Finally, it builds the project with the retrieved CPU cache information.
+
+## Adapting Configs for New Processors
+
+- Copy the closest existing config in `config/` (e.g. `config/config_6700k.h`) and rename it for your target.
+- Update the LLC eviction thresholds (`LLC_BOUND_LOW` and `LLC_BOUND_HIGH`) so they match the eviction behaviour on the new processor; compile and run `tests/set_addr_state_tests.c` to validate the thresholds.
+- To simplify the calibration run, temporarily edit `scripts/run.sh` so it executes `../build/set_addr_state_tests` instead of `../build/l3_fs` and observe the three-column eviction counts.
+- When the thresholds look stable,  restore `run.sh` to run whichever `tests/` target you wish, i.e. `./run.sh ../config/config_7700k.h`
 
 ## Running Specific Experiments
 
